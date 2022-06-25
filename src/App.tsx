@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import EventsExample from "./components/EventsExample";
+import UsersPage from "./components/UsersPage";
+import TodosPage from "./components/TodosPage";
+import CardPage from "./components/CardPage";
+import UserItemPage from "./components/UserItemPage";
+import TodoItemPage from "./components/TodoItemPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import {
+    BrowserRouter,
+    Routes,
+    Route, Link,
+} from "react-router-dom";
+
+const App = () => {
+    return <BrowserRouter>
+        <nav>
+            <Link to='/card'>Card Page</Link>
+            <Link to='/users'>Users Page</Link>
+            <Link to='/todos'>Todos Page</Link>
+            <Link to='/events'>Events Example</Link>
+        </nav>
+
+        <Routes>
+            <Route path='/card' element={<CardPage/>}/>
+            <Route path='/users' element={<UsersPage/>}/>
+            <Route path='/todos' element={<TodosPage/>}/>
+            <Route path='/events' element={<EventsExample/>}/>
+
+            <Route path='/users/:id' element={<UserItemPage/>}/>
+            <Route path='/todos/:id' element={<TodoItemPage/>}/>
+
+            <Route path='/*' element={<CardPage/>}/>
+        </Routes>
+    </BrowserRouter>
+};
 
 export default App;
